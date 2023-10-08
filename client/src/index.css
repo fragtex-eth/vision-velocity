@@ -48,3 +48,8 @@ h3{
   font-style: normal;
   color: #103318;
 }
+a{
+  color: rgb(24, 65, 22);
+  padding-left: 3px;
+  padding-right: 3px;
+}
