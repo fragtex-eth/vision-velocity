@@ -36,3 +36,15 @@ h1{
   line-height: normal;
   letter-spacing: 1.92px;
 }
+h2{
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  color: #103318;
+}
+
+h3{
+  font-size: 32px;
+  font-style: normal;
+  color: #103318;
+}
