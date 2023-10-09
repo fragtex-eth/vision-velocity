@@ -59,7 +59,7 @@ a{
 }
 .carousel .thumb {
   border: none;
-  border-radius: 8px;
+  border-radius: 9px;
 }
 .carousel .thumb:hover {
   border: 1px solid rgb(135, 134, 134);
