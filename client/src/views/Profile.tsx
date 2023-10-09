@@ -2,6 +2,7 @@ import ProfilePic from "./../assets/profilPic.png"
 import ProjectImg from "./../assets/exampleImg.png"
 import { FaLinkedin , FaSquareXTwitter, FaGithub,FaWallet} from 'react-icons/fa6';
 
+
 export default function Profile(){
     return (
         <div className="relative">

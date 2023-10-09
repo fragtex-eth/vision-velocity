@@ -53,3 +53,22 @@ a{
   padding-left: 3px;
   padding-right: 3px;
 }
+
+.carousel.carousel-slider .control-arrow:hover {
+  background: none;
+}
+.carousel .thumb {
+  border: none;
+  border-radius: 8px;
+}
+.carousel .thumb:hover {
+  border: 1px solid rgb(135, 134, 134);
+}
+.carousel .thumb:active {
+  border: 1px solid rgb(135, 134, 134);
+  padding: 0px;
+}
+
+.carousel .thumb.selected  {
+  border: 1px solid rgb(135, 134, 134);
+} 

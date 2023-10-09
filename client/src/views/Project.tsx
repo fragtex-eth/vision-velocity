@@ -1,8 +1,28 @@
 import ProfilePic from "./../assets/profilPic.png"
 import ProjectImg from "./../assets/exampleImg.png"
 import { FaLinkedin , FaSquareXTwitter, FaGithub,FaWallet} from 'react-icons/fa6';
+//@ts-ignore
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
+
 
 export default function Project(){
+    function FullCarousel(){
+        return(
+            <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} className="text-center" >
+                <div>
+                    <img src={ProjectImg} />
+                </div>
+                <div>
+                    <img src={ProjectImg}  />
+                </div>
+                <div>
+                    <img src={ProjectImg}  />
+                </div>
+            </Carousel>
+        )
+    }
     return (
         <div className="relative">
             <img src={ProfilePic} className="absolute left-0 right-0 w-64 m-auto -top-32"></img>
@@ -32,8 +52,68 @@ export default function Project(){
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
                 <div className="">
-                <h3 className="mb-2">Gallery</h3>
-                
+                <h3 className="overflow-hidden mb-3">Gallery</h3>
+                    <FullCarousel/>
+                </div>
+                <div className="">
+                    <h3 className="overflow-hidden mb-3">Updates</h3>
+                    <div className="gap-7 columns-3 block updateblock ">
+                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7">
+                        <img src={ProjectImg}></img>
+                        <div className="p-4">
+                        <p>Media</p>
+                        <p>Update: Thu 4 Aug 2023</p>
+                        <h3>Blockchain Name</h3>
+                        <p>Focus: Now</p>
+                        <p>Status: In progress</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden  h-min mb-7">
+                        <img src=""></img>
+                        <div className="p-4">
+                        <p>Media</p>
+                        <p>Update: Thu 4 Aug 2023</p>
+                        <h3>Blockchain Name</h3>
+                        <p>Focus: Now</p>
+                        <p>Status: In progress</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden  h-min  mb-7">
+                        <img src=""></img>
+                        <div className="p-4">
+                        <p>Media</p>
+                        <p>Update: Thu 4 Aug 2023</p>
+                        <h3>Blockchain Name</h3>
+                        <p>Focus: Now</p>
+                        <p>Status: In progress</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden  h-min mb-7">
+                        <img src=""></img>
+                        <div className="p-4">
+                        <p>Media</p>
+                        <p>Update: Thu 4 Aug 2023</p>
+                        <h3>Blockchain Name</h3>
+                        <p>Focus: Now</p>
+                        <p>Status: In progress</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7">
+                        <img src={ProjectImg}></img>
+                        <div className="p-4">
+                        <p>Media</p>
+                        <p>Update: Thu 4 Aug 2023</p>
+                        <h3>Blockchain Name</h3>
+                        <p>Focus: Now</p>
+                        <p>Status: In progress</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
