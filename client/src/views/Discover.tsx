@@ -1,6 +1,7 @@
 
 import projects from "./../utils/mockData/projects";
 import users from "./../utils/mockData/users";
+import { Link } from 'react-router-dom';
 
 export default function DiscoverView() {
     // Sort projects by recency
@@ -19,14 +20,15 @@ export default function DiscoverView() {
                     //@ts-ignore
                     const userImage = users[project.userId].image;
                     return (
-                        <div className="card w-96 bg-white h-full rounded-[35px] overflow-hidden" key={project.userId}>
+                        <Link to={`/project/${project.userId}`} key={project.userId}>
+                        <div className="card w-96 bg-white min-h-full rounded-[35px] overflow-hidden" key={project.userId}>
                             <div className="top relative">
                                 <img src={project.image} alt={project.name} className="w-full h-[200px] object-cover"/>
                                 <div className="flex px-3 -mt-[70px] items-end justify-between">
                                     <button className=" px-8 h-12 bg-white rounded-3xl shadow border border-black justify-center">Invest</button>
                                     
                                     <img src={userImage} alt={//@ts-ignore
-                                    users[project.userId].name} className="w-[50px] h-[50px] rounded-full border border-black object-cover"  />
+                                    users[project.userId].name} className="w-[50px] h-[50px] rounded-full border border-black object-cover mt-1"  />
                                 </div>
                             </div>
                             <div className="btm p-5 text-left">
@@ -42,9 +44,9 @@ export default function DiscoverView() {
                                 </p>
                             </div>
                         </div>
+                        </Link>
                     )
                 })}
-
             </div>
         </div>
     )

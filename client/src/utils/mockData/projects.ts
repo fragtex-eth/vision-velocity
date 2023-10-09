@@ -6,6 +6,20 @@ let projects = [
         description: "Building sustainable tech for urban farming.",
         creationDate: "01.01.2023",
         image: "https://picsum.photos/200/301",
+        preview: [
+            {
+                img: "https://picsum.photos/200/301"
+            }, 
+            {
+                img: "https://picsum.photos/200/301"
+            }
+        ],
+        links: {
+            github: "www.github.com/MikeMueller",
+            x: "www.x.com/MikeMueller",
+            linkedin: "www.linkedin.com/MikeMueller",
+            walletAddress: "0x465464678787336745463"
+        },
         funds: {
             required: 1200,
             collected: 12,
@@ -14,19 +28,20 @@ let projects = [
         updates: [
             {
                 category: "Technology",
+                name: "Iot Launch",
                 status: "Completed",
                 focus: "latest",
                 description: "Launched our IoT device for efficient water management."
             },
             {
                 category: "Media",
-                status: "Added",
+                name: "Iot Launch",status: "Added",
                 focus: "recent",
                 description: "Uploaded a promo video showcasing urban farming solutions."
             },
             {
                 category: "Content",
-                status: "Published",
+                name: "Iot Launch",status: "Published",
                 focus: "yesterday",
                 description: "Shared a blog post on sustainable urban farming techniques."
             }
@@ -38,6 +53,20 @@ let projects = [
         description: "Documenting backpacking adventures around South-East Asia.",
         creationDate: "10.01.2023",
         image: "https://picsum.photos/200/302",
+        preview: [
+            {
+                img: "https://picsum.photos/200/301"
+            }, 
+            {
+                img: "https://picsum.photos/200/301"
+            }
+        ],
+        links: {
+            github: "www.github.com/MikeMueller",
+            x: "www.x.com/MikeMueller",
+            linkedin: "www.linkedin.com/MikeMueller",
+            walletAddress: "0x465464678787336745463"
+        },
         funds: {
             required: 3200,
             collected: 1223,
@@ -46,19 +75,19 @@ let projects = [
         updates: [
             {
                 category: "Content",
-                status: "Published",
+                name: "Iot Launch",status: "Published",
                 focus: "today",
                 description: "Released a new vlog on my journey through Bali islands."
             },
             {
                 category: "Media",
-                status: "Added",
+                name: "Iot Launch",status: "Added",
                 focus: "this week",
                 description: "Added a photo gallery from the Thailand trip."
             },
             {
                 category: "Technology",
-                status: "Improved",
+                name: "Iot Launch",status: "Improved",
                 focus: "last week",
                 description: "Revamped the website for better mobile responsiveness."
             }
@@ -70,6 +99,20 @@ let projects = [
         description: "A start-up idea for nutritious snacks.",
         creationDate: "11.01.2023",
         image: "https://picsum.photos/200/303",
+        preview: [
+            {
+                img: "https://picsum.photos/200/301"
+            }, 
+            {
+                img: "https://picsum.photos/200/301"
+            }
+        ],
+links: {
+            github: "www.github.com/MikeMueller",
+            x: "www.x.com/MikeMueller",
+            linkedin: "www.linkedin.com/MikeMueller",
+            walletAddress: "0x465464678787336745463"
+        },
         funds: {
             required: 800,
             collected: 120,
@@ -78,13 +121,13 @@ let projects = [
         updates: [
             {
                 category: "Technology",
-                status: "Improved",
+                name: "Iot Launch",status: "Improved",
                 focus: "recent",
                 description: "Integrated a new nutritional calculator on our website."
             },
             {
                 category: "Content",
-                status: "Published",
+                name: "Iot Launch",status: "Published",
                 focus: "today",
                 description: "Shared a post about the health benefits of our newest snack."
             }
@@ -96,6 +139,20 @@ let projects = [
         description: "A YouTube channel showcasing international music.",
         creationDate: "12.01.2023",
         image: "https://picsum.photos/200/304",
+        preview: [
+            {
+                img: "https://picsum.photos/200/301"
+            }, 
+            {
+                img: "https://picsum.photos/200/301"
+            }
+        ],
+links: {
+            github: "www.github.com/MikeMueller",
+            x: "www.x.com/MikeMueller",
+            linkedin: "www.linkedin.com/MikeMueller",
+            walletAddress: "0x465464678787336745463"
+        },
         funds: {
             required: 8300,
             collected: 1220,
@@ -104,7 +161,7 @@ let projects = [
         updates: [
             {
                 category: "Media",
-                status: "Added",
+                name: "Iot Launch",status: "Added",
                 focus: "yesterday",
                 description: "Uploaded a new video featuring traditional Brazilian music."
             }
@@ -116,6 +173,20 @@ let projects = [
     description: "A YouTube channel for learning guitar.",
     creationDate: "13.01.2023",
     image: "https://picsum.photos/200/305",
+    preview: [
+            {
+                img: "https://picsum.photos/200/301"
+            }, 
+            {
+                img: "https://picsum.photos/200/301"
+            }
+        ],
+links: {
+        github: "www.github.com/MikeMueller",
+        x: "www.x.com/MikeMueller",
+        linkedin: "www.linkedin.com/MikeMueller",
+        walletAddress: "0x465464678787336745463"
+    },
     funds: {
         required: 2800,
         collected: 120,
@@ -123,13 +194,13 @@ let projects = [
     updates: [
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "this week",
             description: "Uploaded a new beginner's guide to strumming patterns."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "yesterday",
             description: "Shared promotional images for the upcoming advanced series."
         }
@@ -149,13 +220,13 @@ let projects = [
     updates: [
         {
             category: "Music",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "last month",
             description: "Dropped a new album 'Echoes of the Abyss'."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "two weeks ago",
             description: "Released the official video for the track 'Moonlit Mirage'."
         }
@@ -175,13 +246,13 @@ let projects = [
     updates: [
         {
             category: "Technology",
-            status: "Improved",
+            name: "Iot Launch",status: "Improved",
             focus: "recent",
             description: "Upgraded our app to include personalized workout recommendations."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "yesterday",
             description: "Shared a blog post on maintaining fitness during winter months."
         }
@@ -201,13 +272,13 @@ let projects = [
     updates: [
         {
             category: "Technology",
-            status: "Launched",
+            name: "Iot Launch",status: "Launched",
             focus: "recent",
             description: "Introduced a new virtual reality headset with 8K resolution."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "last week",
             description: "Promoted a VR event for an immersive space exploration experience."
         }
@@ -227,13 +298,13 @@ let projects = [
     updates: [
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "today",
             description: "Uploaded a DIY tutorial on creating handmade greeting cards."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "three days ago",
             description: "Showcased a gallery of crafts made by subscribers."
         }
@@ -253,13 +324,13 @@ let projects = [
     updates: [
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "yesterday",
             description: "Reviewed the latest flagship smartphone from XYZ brand."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "this week",
             description: "Uploaded unboxing videos of new gaming consoles."
         }
@@ -279,19 +350,19 @@ let projects = [
     updates: [
         {
             category: "Technology",
-            status: "Launched",
+            name: "Iot Launch",status: "Launched",
             focus: "this month",
             description: "Introduced a new energy-efficient home insulation material."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "two weeks ago",
             description: "Released a video on sustainable home constructions."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "today",
             description: "Blog post about the importance of green homes."
         }
@@ -311,37 +382,37 @@ let projects = [
     updates: [
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "this week",
             description: "Exploration of historical sites in downtown LA."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "yesterday",
             description: "Photo gallery of street arts in San Francisco."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "last week",
             description: "Vlog about the best rooftop views in New York."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "this month",
             description: "Interview with a famous urban explorer."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "two days ago",
             description: "Guide on the must-visit urban spots in Chicago."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "last month",
             description: "Drone footage of iconic cityscapes."
         }
@@ -361,19 +432,19 @@ let projects = [
     updates: [
         {
             category: "Technology",
-            status: "Improved",
+            name: "Iot Launch",status: "Improved",
             focus: "recent",
             description: "App updated to facilitate quicker chef bookings."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "last week",
             description: "Photoshoot with top local chefs."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "today",
             description: "Article on the rise of home dining experiences."
         }
@@ -393,13 +464,13 @@ let projects = [
     updates: [
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "yesterday",
             description: "Documentary on the marine life of the Great Barrier Reef."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "today",
             description: "Behind-the-scenes of a wildlife shoot in the Amazon."
         }
@@ -419,25 +490,25 @@ let projects = [
     updates: [
         {
             category: "Technology",
-            status: "Launched",
+            name: "Iot Launch",status: "Launched",
             focus: "this month",
             description: "Unveiled a new platform for eSports match streaming."
         },
         {
             category: "Media",
-            status: "Added",
+            name: "Iot Launch",status: "Added",
             focus: "last week",
             description: "Promotions for the upcoming international gaming league."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "two days ago",
             description: "Interview with top eSports athletes."
         },
         {
             category: "Content",
-            status: "Published",
+            name: "Iot Launch",status: "Published",
             focus: "today",
             description: "Guide on starting a career in professional gaming."
         }
@@ -457,19 +528,19 @@ let projects = [
         updates: [
             {
                 category: "Music",
-                status: "Published",
+                name: "Iot Launch",status: "Published",
                 focus: "recent",
                 description: "Dropped a new beat collection inspired by African rhythms."
             },
             {
                 category: "Content",
-                status: "Shared",
+                name: "Iot Launch",status: "Shared",
                 focus: "yesterday",
                 description: "Tweeted about the upcoming collaboration with a famous artist."
             },
             {
                 category: "Media",
-                status: "Uploaded",
+                name: "Iot Launch",status: "Uploaded",
                 focus: "last month",
                 description: "Added a behind-the-scenes video from the studio."
             }

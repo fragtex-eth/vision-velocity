@@ -4,21 +4,26 @@ import { FaLinkedin , FaSquareXTwitter, FaGithub,FaWallet} from 'react-icons/fa6
 //@ts-ignore
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-
+import projects from "../utils/mockData/projects";
+import users from "../utils/mockData/users";
+import { useParams } from "react-router-dom";
 
 export default function Project(){
+    const { id } = useParams();
+    //@ts-ignore
+    const project = projects.find(p => p.userId === parseInt(id));
+    //@ts-ignore
+    const user = users[project.userId];
+
     function FullCarousel(){
         return(
             <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} className="text-center" >
+                {//@ts-ignore
+                project?.preview.img?.map((image) => {
                 <div>
-                    <img src={ProjectImg} />
+                    <img src={image} />
                 </div>
-                <div>
-                    <img src={ProjectImg}  />
-                </div>
-                <div>
-                    <img src={ProjectImg}  />
-                </div>
+                })}
             </Carousel>
         )
     }
@@ -26,18 +31,28 @@ export default function Project(){
         <div className="relative">
             <img src={ProfilePic} className="absolute left-0 right-0 w-64 m-auto -top-32"></img>
             <div className="flex flex-col gap-7 justify-between py-7 px-24 mt-[160px]  surveys flex flex-wrap  bg-red-50 border border-solid mt-11 border-white max-w-[1270px] rounded-[45px] ml-auto mr-auto">
-                <h2 className="ml-auto mr-auto mt-28">Mike Mueller</h2>
+                <h2 className="ml-auto mr-auto mt-28">{project?.name}</h2>
                 <div className="links flex justify-between w-40 text-2xl ml-auto mr-auto">
-                    <FaSquareXTwitter/>
-                    <FaGithub/>
-                    <FaLinkedin/>
+                    <a href={project?.links?.x}>
+                        <FaSquareXTwitter/>
+                    </a>
+                    <a href={project?.links?.github}>
+                        <FaGithub/>
+                        </a>
+                    <a href={project?.links?.linkedin}>
+                        <FaLinkedin/>
+                    </a>
+                    <a href={project?.links?.walletAddress}>
                     <FaWallet/>
+                    </a>
                 </div>
                 <div className="flex justify-center">
-                    <span className="-mt-4 -mb-4 text-right w-[850px] text-green-950 text-xl"><span className="font-semibold text-2xl">1100$</span> / 1300$</span>
+                    <span className="-mt-4 -mb-4 text-right w-[850px] text-green-950 text-xl"><span className="font-semibold text-2xl">{project?.funds?.collected}$</span> / {project?.funds?.required}$</span>
                 </div>
                 <div className="progress h-0.5 w-3/4 bg-gray-400  ml-auto mr-auto">
-                    <div className="inside h-1 bg-black w-3/4 -mt-[1px] rounded-[40px]"></div>
+                    
+                    <div className="inside h-1 bg-black -mt-[1px] rounded-[40px]" style={{width: `${//@ts-ignore
+                    (project?.funds?.required/project?.funds?.collected)}%`}}></div>
                 </div>
                 <div className="mx-auto w-96 flex justify-between gap-5">
                     <div className="h-12 flex border border-black rounded-3xl ">
@@ -48,8 +63,7 @@ export default function Project(){
                 </div>
                 <p className="flex justify-center text-xs -mt-4">By continuing, you agree to our<a>Terms of Service</a> and acknowledge our <a>Privacy Policy</a></p>
                 <p className=" text-justify">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                {project?.description}</p>
                 <div className="">
                 <h3 className="overflow-hiddenmb-3">Gallery</h3>
                      <div className="">
@@ -59,64 +73,22 @@ export default function Project(){
                 <div className="">
                     <h3 className="overflow-hidden mb-3">Updates</h3>
                     <div className="gap-7 columns-3 block updateblock ">
-                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7">
-                        <img src={ProjectImg}></img>
-                        <div className="p-4">
-                        <p>Media</p>
-                        <p>Update: Thu 4 Aug 2023</p>
-                        <h3>Blockchain Name</h3>
-                        <p>Focus: Now</p>
-                        <p>Status: In progress</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    {project?.updates.map((update, index) => (
+                        <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7" key={index}>
+                            <img src={ProjectImg} alt="Update Image"></img>
+                            <div className="p-4">
+                                <p>{update.category}</p>
+                                <p>Update: {new Date().toDateString()}</p> 
+                                <h3>{update.name}</h3> 
+                                <p>Focus: {update.focus}</p>
+                                <p>Status: {update.status}</p>
+                                <p>{update.description}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden  h-min mb-7">
-                        <img src=""></img>
-                        <div className="p-4">
-                        <p>Media</p>
-                        <p>Update: Thu 4 Aug 2023</p>
-                        <h3>Blockchain Name</h3>
-                        <p>Focus: Now</p>
-                        <p>Status: In progress</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden  h-min  mb-7">
-                        <img src=""></img>
-                        <div className="p-4">
-                        <p>Media</p>
-                        <p>Update: Thu 4 Aug 2023</p>
-                        <h3>Blockchain Name</h3>
-                        <p>Focus: Now</p>
-                        <p>Status: In progress</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden  h-min mb-7">
-                        <img src=""></img>
-                        <div className="p-4">
-                        <p>Media</p>
-                        <p>Update: Thu 4 Aug 2023</p>
-                        <h3>Blockchain Name</h3>
-                        <p>Focus: Now</p>
-                        <p>Status: In progress</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7">
-                        <img src={ProjectImg}></img>
-                        <div className="p-4">
-                        <p>Media</p>
-                        <p>Update: Thu 4 Aug 2023</p>
-                        <h3>Blockchain Name</h3>
-                        <p>Focus: Now</p>
-                        <p>Status: In progress</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
+    </div>
     )
 }
