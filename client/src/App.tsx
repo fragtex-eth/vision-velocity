@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="min-h-screen overflow-y-hidden">
       <div className="ellipse -z-10"></div>
-      <Login/>
+      {/* <Login/> */}
       <Header/>
-      <Project/>
-      {/* <Profile/> */}
-      {/* <DiscoverView/> */}
+      {/* <Project/>
+      <Profile/> */}
+      <DiscoverView/>
     </div>
   )
 }
