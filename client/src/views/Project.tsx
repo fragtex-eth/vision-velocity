@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import projects from "../utils/mockData/projects";
 import users from "../utils/mockData/users";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Project(){
     const { id } = useParams();
@@ -17,21 +17,25 @@ export default function Project(){
 
     function FullCarousel(){
         return(
-            <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} className="text-center" >
-                {//@ts-ignore
-                project?.preview.img?.map((image) => {
-                <div>
-                    <img src={image} />
-                </div>
-                })}
+            <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} className="text-center -mt-5 p-10" >
+                {project?.preview?.map((previewItem) => (
+                    <div key={previewItem.img}>
+                        <img src={previewItem.img} alt="Preview picture" className="" />
+                    </div>
+                ))}
             </Carousel>
         )
     }
     return (
         <div className="relative">
-            <img src={ProfilePic} className="absolute left-0 right-0 w-64 m-auto -top-32"></img>
+            <div className="">
+                <img src={project?.image} className="absolute left-0 right-0 w-64 h-64 rounded-full border-2 border border-black m-auto -top-32"></img>
+            </div>
             <div className="flex flex-col gap-7 justify-between py-7 px-24 mt-[160px]  surveys flex flex-wrap  bg-red-50 border border-solid mt-11 border-white max-w-[1270px] rounded-[45px] ml-auto mr-auto">
                 <h2 className="ml-auto mr-auto mt-28">{project?.name}</h2>
+                <Link to={`/profile/${project?.userId}`} className="text-center -mt-8 text-lg ">
+                by {user?.name}
+                </Link>
                 <div className="links flex justify-between w-40 text-2xl ml-auto mr-auto">
                     <a href={project?.links?.x}>
                         <FaSquareXTwitter/>
@@ -77,12 +81,12 @@ export default function Project(){
                         <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7" key={index}>
                             <img src={ProjectImg} alt="Update Image"></img>
                             <div className="p-4">
-                                <p>{update.category}</p>
+                                <p>{update?.category}</p>
                                 <p>Update: {new Date().toDateString()}</p> 
-                                <h3>{update.name}</h3> 
-                                <p>Focus: {update.focus}</p>
-                                <p>Status: {update.status}</p>
-                                <p>{update.description}</p>
+                                <h3>{update?.name}</h3> 
+                                <p>Focus: {update?.focus}</p>
+                                <p>Status: {update?.status}</p>
+                                <p>{update?.description}</p>
                             </div>
                         </div>
                     ))}
