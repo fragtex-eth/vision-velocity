@@ -19,7 +19,7 @@ useEffect(() => {
     <div className="min-h-screen overflow-y-hidden">
       <div className="ellipse -z-10"></div>
       {/* <CreateProfile/> */}
-      <CreateProject/>
+      {/* <CreateProject/> */}
       <Header/>
       
       <Outlet/>

@@ -1,6 +1,8 @@
 import Logo from "../../assets/logo.svg"
 import { BiSearch } from 'react-icons/bi';
 import { Link } from "react-router-dom";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 export default function Header(){
     return (
         <header className="flex justify-between p-5 items-center mb-14">
@@ -13,7 +15,7 @@ export default function Header(){
                     <BiSearch/>
                 </div>
             </div>
-            <button className="text-white bg-black rounded-[40px] shadow w-40 h-[45px]">Connect</button>
+            <ConnectButton />
         </header>
     )
 }
