@@ -53,6 +53,15 @@ a{
 
 }
 
+.elemShadow{
+  box-shadow: 0 8px 12px rgba(93,0,207,.08);
+  transition: all 2s ease;
+  -webkit-transition: all .4s ease;
+}
+.elemShadow:hover{
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,.25));
+  transform: scale(1.01);
+}
 .carousel.carousel-slider .control-arrow:hover {
   background: none !important;
 }

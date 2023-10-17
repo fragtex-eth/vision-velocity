@@ -4,18 +4,38 @@ import { FaLinkedin , FaSquareXTwitter, FaGithub,FaWallet} from 'react-icons/fa6
 //@ts-ignore
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import projects from "../utils/mockData/projects";
-import users from "../utils/mockData/users";
 import { Link, useParams } from "react-router-dom";
+import { useUsers } from "../context/userContext";
+import { useProjects } from "../context/projectsContext";
+import { useState, useEffect } from "react";
 
 export default function Project(){
+    const[project, setProject] = useState(null);
+    const[user, setUser] = useState(null);
     const { id } = useParams();
+    const {users} = useUsers();
+    const {projects} = useProjects();
     //@ts-ignore
-    const project = projects.find(p => p.userId === parseInt(id));
     //@ts-ignore
-    const user = users[project.userId];
+
+    useEffect(() => {
+        try {
+            const foundProject = projects.find(p => p.id === id);
+            setProject(foundProject);
+            // It's essential to check if foundProject exists before trying to access its properties
+            if (foundProject) {
+                const foundUser = users[foundProject.userId];
+                setUser(foundUser);
+            }
+    
+        } catch (err) {
+            console.error("Error fetching projects:", err);
+        }
+    }, [projects, users, id]);
+
 
     function FullCarousel(){
+
         return(
             <Carousel infiniteLoop={true} emulateTouch={true} showStatus={false} autoPlay={true} className="text-center -mt-5 p-10" >
                 {project?.preview?.map((previewItem) => (
