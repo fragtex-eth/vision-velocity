@@ -5,10 +5,16 @@ import (
 	"log"
 	"time"
 	"visionvelocity/database"
+	"visionvelocity/routes"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
+
+type Timestamps struct {
+	CreatedAt time.Time `json:"create_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
 
 func main() {
 	client, err := database.Connect()
