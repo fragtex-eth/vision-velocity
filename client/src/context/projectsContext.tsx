@@ -2,12 +2,10 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
 type ProjectType = {
-  // Define the structure of your project data here
   image: string;
   userId: string;
-  // ... other fields
-};
-
+  // Missing parameters
+}
 type ProjectsContextType = {
   projects: ProjectType[];
   setProjects: React.Dispatch<React.SetStateAction<ProjectType[]>>;

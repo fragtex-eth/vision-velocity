@@ -27,7 +27,6 @@ type ProjectsResponse = Project[];
 
 
 export default function DiscoverView() {
-    // Sort projects by recency
     //const [loading, setLoading] = useState<boolean>(true);
     //const [error, setError] = useState<Error | null>(null);
 
@@ -50,7 +49,6 @@ export default function DiscoverView() {
 
                 {projects && projects.map((project) => {
                     const fundingPercentage = (project.funds.collected / project.funds.required) * 100;
-                    //@ts-ignore
                     const userImage = users[project.userId]?.image ? users[project.userId]?.image : DefaultUserImg;
                     return (
                         <Link to={`/project/${project.id}`} key={project.userId}>

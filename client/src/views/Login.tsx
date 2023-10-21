@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useModal } from "../context/ModalContext";
 import { loginEC } from "../api/auth/Login"; // Assume you have a login API
-
+import { useLogin } from "../context/login";
 export default function Login() {
+    const{setIsLoggedIn} = useLogin();
     const { closeModal } = useModal();
 
     const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ export default function Login() {
         }
 
         try {
-            const response = await loginEC(email, password);
+            const response = await loginEC(email, password,setIsLoggedIn);
             if (response && response.success) {
                 closeModal();
             } else {

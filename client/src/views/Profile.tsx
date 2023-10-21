@@ -17,12 +17,10 @@ export default function Profile() {
 
     useEffect(() => {
         
-        // Safely retrieve the user
         const foundUser = users[id];
         setUser(foundUser);
 
         if (foundUser) {
-            // Retrieve user's projects and investments
             let foundUserProjects = null
             if (foundUser.projects) {
                 foundUserProjects = projects.filter(project => foundUser.id === project.userId);

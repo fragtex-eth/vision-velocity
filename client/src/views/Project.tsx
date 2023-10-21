@@ -1,8 +1,7 @@
 import ProfilePic from "./../assets/profilPic.png"
 import ProjectImg from "./../assets/exampleImg.png"
 import { FaLinkedin , FaSquareXTwitter, FaGithub,FaWallet} from 'react-icons/fa6';
-//@ts-ignore
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Link, useParams } from "react-router-dom";
 import { useUsers } from "../context/userContext";
@@ -15,14 +14,11 @@ export default function Project(){
     const { id } = useParams();
     const {users} = useUsers();
     const {projects} = useProjects();
-    //@ts-ignore
-    //@ts-ignore
 
     useEffect(() => {
         try {
             const foundProject = projects.find(p => p.id === id);
             setProject(foundProject);
-            // It's essential to check if foundProject exists before trying to access its properties
             if (foundProject) {
                 const foundUser = users[foundProject.userId];
                 setUser(foundUser);
@@ -76,7 +72,7 @@ export default function Project(){
                 <div className="progress h-0.5 w-3/4 bg-gray-400  ml-auto mr-auto">
                     
                     <div className="inside h-1 bg-black -mt-[1px] rounded-[40px]" style={{width: `${//@ts-ignore
-                    (project?.funds?.required/project?.funds?.collected)}%`}}></div>
+                    (project?.funds?.collected/project?.funds?.required)}%`}}></div>
                 </div>
                 <div className="mx-auto w-96 flex justify-between gap-5">
                     <div className="h-12 flex border border-black rounded-3xl ">

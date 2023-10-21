@@ -10,11 +10,12 @@ import { fetchUserData } from "../../api/user/FetchUsers";
 import { useLogin } from "../../context/login";
 import {fetchUserDetails} from "../../api/user/FetchIUser"
 import { useModal } from "../../context/ModalContext";
+import { logoutEC } from "../../api/auth/Logout";
 
 export default function Header(){
     const { setProjects } = useProjects();
     const {setUsers,users} = useUsers();
-    const {isLoggedIn, setIsLoggedIn} = useLogin();
+    const {setIsLoggedIn, isLoggedIn} = useLogin();
     const {openModal} = useModal();
 
         useEffect(() => {
@@ -50,10 +51,7 @@ export default function Header(){
 
         async function getUser(){
             try {
-                const response = await fetchUserDetails();
-                console.log(response)
-                setIsLoggedIn(response);
-                //setLoading(false);
+                const response = await fetchUserDetails(setIsLoggedIn);
             } catch (err) {
                 console.error("Error fetching users:", err);
                 //setError(err as Error);
@@ -77,7 +75,12 @@ export default function Header(){
                 {!isLoggedIn || isLoggedIn.message === "unauthenticated" ?
                 (<><button onClick={()=> openModal('register')}>Register</button>
                 {" "}
-                <button onClick={()=> openModal('login')}>Login</button></>): null
+                <button onClick={()=> openModal('login')}>Login</button></>): (
+                    <div className="flex flex-col">
+                    <span>Welcome {isLoggedIn?.name}</span>
+                    <button className="text-xs text-gray-400" onClick={async () => {await logoutEC(setIsLoggedIn); console.log("now")}}>Logout</button>
+                    </div>
+                )
             }
             </div>
         </header>

@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
-// Define the context value type
 interface LoginContextType {
     isLoggedIn: boolean;
     setIsLoggedIn: (value: boolean) => void;
