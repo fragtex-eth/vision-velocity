@@ -173,5 +173,5 @@ func getUserEmailFromToken(c *fiber.Ctx, client *mongo.Client) (string, error) {
 		return "", err
 	}
 
-	return user.Email, nil // Assuming there's an Email field in your User struct
+	return user.ID.Hex(), nil // Assuming there's an Email field in your User struct
 }

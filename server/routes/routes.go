@@ -26,4 +26,7 @@ func Setup(app *fiber.App, client *mongo.Client) {
 	app.Post("/api/projects", func(c *fiber.Ctx) error {
 		return controllers.PostProjectHandler(client)(c)
 	})
+
+	//Users
+	app.Get("/api/users", controllers.GetAllUsersHandler(client))
 }

@@ -33,6 +33,10 @@ func main() {
 
 	app.Use(cors.New(cors.Config{
 		AllowCredentials: true,
+		AllowOrigins:     "http://10.0.0.244:5173,http://localhost:5173",
+		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+		AllowHeaders:     "Origin,Content-Type,Accept,Authorization,Cookie",
+		ExposeHeaders:    "Content-Length,Set-Cookie",
 	}))
 
 	routes.Setup(app, client)

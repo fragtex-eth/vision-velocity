@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func EditUserProfileHandler(client *mongo.Client) func(c *fiber.Ctx) error {
@@ -52,5 +53,48 @@ func EditUserProfileHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"message": "User data updated successfully",
 		})
+	}
+}
+
+func GetAllUsersHandler(client *mongo.Client) func(c *fiber.Ctx) error {
+	return func(c *fiber.Ctx) error {
+		// Create a slice to hold all users fetched from the database
+		var usersFromDB []User
+
+		// Connect to the database
+		database := client.Database(dbName)
+		collection := database.Collection(collectionUser)
+
+		// Find all users but exclude the Password and Email fields using a projection
+		findOptions := options.Find().SetProjection(bson.M{
+			"password": 0,
+			"email":    0,
+		})
+
+		cur, err := collection.Find(context.TODO(), bson.M{}, findOptions)
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"message": "Error fetching users from database",
+			})
+		}
+		defer cur.Close(context.TODO())
+
+		// Decode the cursor data into our slice of users
+		if err := cur.All(context.TODO(), &usersFromDB); err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"message": "Error decoding user data",
+			})
+		}
+
+		// Create the output in the desired format
+		output := make(map[string]User)
+
+		for _, user := range usersFromDB {
+			// Convert the ObjectID to string
+			userId := user.ID.Hex()
+			output[userId] = user
+		}
+
+		return c.JSON(output)
 	}
 }

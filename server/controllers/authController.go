@@ -95,6 +95,7 @@ func LoginHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 		if err := bcrypt.CompareHashAndPassword(user.Password, []byte(data["password"])); err != nil {
 			c.Status(fiber.StatusBadRequest)
 			return c.JSON(fiber.Map{
+				"success": false,
 				"message": "incorrect password",
 			})
 		}
@@ -111,6 +112,7 @@ func LoginHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 			fmt.Println("Token Generation Error:", err)
 			c.Status(fiber.StatusInternalServerError)
 			return c.JSON(fiber.Map{
+				"success": false,
 				"message": "could not log in",
 			})
 		}
@@ -120,11 +122,13 @@ func LoginHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 			Value:    token,
 			Expires:  time.Now().Add(time.Hour * 24),
 			HTTPOnly: true,
+			SameSite: "None",
 		}
 
 		c.Cookie(&cookie)
 
 		return c.JSON(fiber.Map{
+			"success": true,
 			"message": "success",
 		})
 	}
@@ -169,6 +173,7 @@ func UserHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 			fmt.Println(err)
 			c.Status(fiber.StatusUnauthorized)
 			return c.JSON(fiber.Map{
+				"success": false,
 				"message": "unauthenticated",
 			})
 		}
@@ -177,6 +182,7 @@ func UserHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 		if !ok {
 			c.Status(fiber.StatusUnauthorized)
 			return c.JSON(fiber.Map{
+				"success": false,
 				"message": "invalid token claims",
 			})
 		}
@@ -185,6 +191,7 @@ func UserHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 		if err != nil {
 			c.Status(fiber.StatusInternalServerError)
 			return c.JSON(fiber.Map{
+				"success": false,
 				"message": "invalid user ID in token",
 			})
 		}
@@ -197,6 +204,7 @@ func UserHandler(client *mongo.Client) func(c *fiber.Ctx) error {
 			if err == mongo.ErrNoDocuments {
 				c.Status(fiber.StatusNotFound)
 				return c.JSON(fiber.Map{
+					"success": false,
 					"message": "User not found",
 				})
 			}
@@ -213,11 +221,13 @@ func LogoutHandler(c *fiber.Ctx) error {
 		Value:    "",
 		Expires:  time.Now().Add(-time.Hour),
 		HTTPOnly: true,
+		SameSite: "None",
 	}
 
 	c.Cookie(&cookie)
 
 	return c.JSON(fiber.Map{
+		"success": true,
 		"message": "logged out successfully",
 	})
 }
