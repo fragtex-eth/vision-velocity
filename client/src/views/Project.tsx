@@ -18,12 +18,11 @@ export default function Project(){
     useEffect(() => {
         try {
             const foundProject = projects.find(p => p.id === id);
-            setProject(foundProject);
+            setProject(foundProject || {});  // Fallback to an empty object
             if (foundProject) {
                 const foundUser = users[foundProject.userId];
-                setUser(foundUser);
+                setUser(foundUser || {});  // Fallback to an empty object
             }
-    
         } catch (err) {
             console.error("Error fetching projects:", err);
         }
@@ -93,7 +92,7 @@ export default function Project(){
                 <div className="">
                     <h3 className="overflow-hidden mb-3">Updates</h3>
                     <div className="gap-7 columns-3 block updateblock ">
-                    {project?.updates.map((update, index) => (
+                    {project?.updates?.map((update, index) => (
                         <div className="slide w-[340px] bg-white rounded-[30px] overflow-hidden h-min mb-7" key={index}>
                             <img src={ProjectImg} alt="Update Image"></img>
                             <div className="p-4">

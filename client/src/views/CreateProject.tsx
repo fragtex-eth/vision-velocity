@@ -1,78 +1,141 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 
 export default function CreateProject() {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [imagePreviewUrl, setImagePreviewUrl] = useState('');
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [image, setImage] = useState("");
+    const [preview1, setPreview1] = useState("");
+    const [preview2, setPreview2] = useState("");
+    const [githubLink, setGithubLink] = useState("");
+    const [xLink, setXLink] = useState("");
+    const [linkedinLink, setLinkedinLink] = useState("");
+    const [walletAddress, setWalletAddress] = useState("");
+    const [requiredFunds, setRequiredFunds] = useState("");
+    const [sellPercentage, setSellPercentage] = useState("");
+    const [error, setError] = useState(""); 
 
-    const [selectedHeaderImages, setSelectedHeaderImages] = useState([]);
-    const [headerImagePreviewUrls, setHeaderImagePreviewUrls] = useState([]);
+    const handleSubmit = async () => {
+        const body = {
+            name,
+            description,
+            image,
+            preview: [
+                { img: preview1 },
+                { img: preview2 }
+            ],
+            links: {
+                github: githubLink,
+                x: xLink,
+                linkedin: linkedinLink,
+                walletAddress
+            },
+            funds: {
+                required: parseFloat(requiredFunds),
+            },
+            sellPercentage: parseInt(sellPercentage)
+        };
 
-    const handleImageChange = (e) => {
-        e.preventDefault();
+        try {
+            const response = await fetch("http://127.0.0.1:7777/api/projects", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body),
+                credentials: 'include'
+            });
 
-        let reader = new FileReader();
-        let file = e.target.files[0];
+            const data = await response.json();
 
-        reader.onloadend = () => {
-            setSelectedImage(file);
-            setImagePreviewUrl(reader.result);
+            if (data && data.success) {
+                // Optionally, you can handle success response, e.g., redirect to another page
+            } else {
+                setError(data.message || "Project creation failed!");
+            }
+        } catch (err) {
+            setError("An error occurred. Please try again.");
         }
+    };
 
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    }
-
-    const handleHeaderImagesChange = (e) => {
-        e.preventDefault();
-
-        let files = Array.from(e.target.files);
-        let fileReaders = files.map(file => {
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            return reader;
-        });
-
-        Promise.all(fileReaders.map(reader => new Promise((resolve) => {
-            reader.onloadend = () => resolve(reader.result);
-        }))).then(previewUrls => {
-            setSelectedHeaderImages(files);
-            setHeaderImagePreviewUrls(previewUrls);
-        });
-    }
-
-
-    return (<div className="fixed h-full w-full  bg-opacity-60 bg-black z-10 text-white flex justify-center items-center ">
-        <div className=" bg-white rounded-3xl overflow-hidden py-14 relative">
-            <button className="absolute w-12 h-12 rounded-full bg-black right-0 top-0 mr-5 mt-5">X</button>
-            <h1 className="text-center w-[550px] mb-5">Create Project</h1>
-            <div className="flex flex-col py-5 px-16 ">
-                <span  className="ml-4 mb-1 text-green-950 text-base font-bold">Name:</span>
-                <input className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal" placeholder="Type the name here..."></input>
-                    <div className="">
-                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Logo:</span>
-                    <input className="" type="file" onChange={handleImageChange} />
+    return (
+        <div className="fixed h-full w-full bg-opacity-60 bg-black z-10 text-white flex justify-center items-center">
+            <div className="bg-white rounded-3xl overflow-hidden py-14 relative">
+                <h1 className="text-center w-[550px] mb-5">Create Project</h1>
+                <div className="flex flex-wrap py-5 px-16">
+                    {error && <span className="text-red-500 mb-4">{error}</span>}
+                    
+                    {/* Name input */}
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Project Name:</span>
+                    <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter project name..."
+                    />
+    
+                    {/* Description textarea */}
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Description:</span>
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="mb-4 p-4 h-32 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter project description..."
+                    />
+    
+                    {/* Image input */}
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Image URL:</span>
+                    <input
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                        className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter image URL..."
+                    />
+    
+                    {/* Two preview image inputs */}
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Preview Image 1 URL:</span>
+                    <input
+                        value={preview1}
+                        onChange={(e) => setPreview1(e.target.value)}
+                        className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter preview image 1 URL..."
+                    />
+    
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Preview Image 2 URL:</span>
+                    <input
+                        value={preview2}
+                        onChange={(e) => setPreview2(e.target.value)}
+                        className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter preview image 2 URL..."
+                    />
+    
+                    {/* Links input fields */}
+                    {/* ... similar to the EditProfile component for github, x, linkedin, and walletAddress links ... */}
+    
+                    {/* Funds input fields */}
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Required Funds:</span>
+                    <input
+                        value={requiredFunds}
+                        onChange={(e) => setRequiredFunds(e.target.value)}
+                        className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter required funds..."
+                        type="number"
+                    />
+    
+    
+                    {/* Sell Percentage input */}
+                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Sell Percentage:</span>
+                    <input
+                        value={sellPercentage}
+                        onChange={(e) => setSellPercentage(e.target.value)}
+                        className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal"
+                        placeholder="Enter sell percentage..."
+                        type="number"
+                    />
+    
+                    <button onClick={handleSubmit} className="p-4 h-12 bg-black rounded-3xl flex items-center justify-center">Create Project</button>
                 </div>
-                {imagePreviewUrl && <img src={imagePreviewUrl} alt="Logo Preview" className="mt-4 w-20 h-20 object-cover" />}
-                
-                <div className="mt-4">
-                    <span className="ml-4 mb-1 text-green-950 text-base font-bold">Preview Images:</span>
-                    <input className="" type="file" multiple onChange={handleHeaderImagesChange} />
-                </div>
-                <div className="flex mt-4 space-x-4">
-                    {headerImagePreviewUrls.map((url, index) => (
-                        <img key={index} src={url} alt={`Header Image ${index + 1}`} className="w-20 h-20 object-cover" />
-                    ))}
-                </div>
-
-                     <span  className="ml-4 mb-1 text-green-950 text-base font-bold">Description</span>
-                <textarea className="h-18 mb-4 p-4 h-28 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal" placeholder="Type the email address here..."></textarea>
-                <span  className="ml-4 mb-1 text-green-950 text-base font-bold">Links:</span>
-                <input className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal" placeholder="Github"></input>
-                <input className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal" placeholder="X"></input>
-                <input className="mb-4 p-4 h-12 bg-neutral-100 rounded-3xl text-zinc-500 text-base font-normal" placeholder="Linkedin"></input>
-                <button className="p-4 h-12  bg-black rounded-3xl flex items-center justify-center  ">Save</button>
             </div>
         </div>
-    </div>);
+    );
+    
 }

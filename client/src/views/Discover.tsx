@@ -6,6 +6,7 @@ import { fetchProjects } from "../api/project/FetchProjects";
 import DefaultUserImg from "../assets/defaultUserImg.webp"
 import { useProjects } from "../context/projectsContext";
 import { useUsers } from "../context/userContext";
+import { useModal } from "../context/ModalContext";
 type Project = {
     id:string;
     userId: string;
@@ -32,7 +33,7 @@ export default function DiscoverView() {
 
     const { projects } = useProjects();
     const { users } = useUsers();
-
+    const {openModal} =useModal();
     // if (loading) {
     //     return <div>Loading...</div>;
     // }
@@ -45,6 +46,7 @@ export default function DiscoverView() {
     return (
         <div className="text-center ">
             <h1>Discover</h1>
+            <button onClick={()=> openModal('createProject')}>Create Project</button>
             <div className="content-start gap-7 justify-between p-7 surveys flex flex-wrap bg-white border border-solid border-[#50695319] mt-11 border-white max-w-[1270px] rounded-[45px] ml-auto mr-auto">
 
                 {projects && projects.map((project) => {

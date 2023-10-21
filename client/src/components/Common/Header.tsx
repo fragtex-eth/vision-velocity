@@ -24,7 +24,6 @@ export default function Header(){
                     const response = await fetchProjects();
                     const sorted = response.sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
                     setProjects(sorted);
-                    console.log(sorted)
                     getUsers();
                     getUser();
                     //setLoading(false);
@@ -77,7 +76,7 @@ export default function Header(){
                 {" "}
                 <button onClick={()=> openModal('login')}>Login</button></>): (
                     <div className="flex flex-col">
-                    <span>Welcome {isLoggedIn?.name}</span>
+                    <span>Welcome <Link to={`/profile/${isLoggedIn?.id}`}>{isLoggedIn?.name}</Link></span>
                     <button className="text-xs text-gray-400" onClick={async () => {await logoutEC(setIsLoggedIn); console.log("now")}}>Logout</button>
                     </div>
                 )

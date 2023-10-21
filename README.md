@@ -1,6 +1,0 @@
-# VisionVelocity 
-
-## Problem
-
-## Solution
-

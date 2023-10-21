@@ -6,12 +6,14 @@ import Profile from './views/Profile'
 import Project from './views/Project'
 import { useLocation } from "react-router-dom";
 import { useEffect } from 'react';
-import CreateProfile from './views/CreateProfile';
+import CreateProfile from './views/EditProfile';
 import CreateProject from './views/CreateProject';
 import BackgroundLines from "./assets/bgLines.svg"
 import { useModal } from './context/ModalContext';
 import Register from './views/Register';
 import Login from './views/Login';
+import EditProfile from './views/EditProfile';
+
 //any
 function App() {
   const location = useLocation();
@@ -28,6 +30,8 @@ useEffect(() => {
         {/* <CreateProject/> */}
         {modalType === 'register' && <Register />}
         {modalType === 'login' && <Login />}
+        {modalType === 'editProfile' && <EditProfile/>}
+        {modalType === 'createProject' && <CreateProject/>}
         <Header/>
         
         <Outlet/>
