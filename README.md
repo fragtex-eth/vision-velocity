@@ -1,3 +1,4 @@
+Hackathon EthGlobal
 # VisionVelocity 
 
 ## Problem
