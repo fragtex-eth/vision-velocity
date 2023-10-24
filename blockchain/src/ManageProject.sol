@@ -4,7 +4,7 @@ pragma solidity 0.8.21;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract ManageProject is  ERC20,Ownable {
+contract ManageProject is ERC20, Ownable {
     uint256 immutable public fundsToRaise;
     uint256 public raisedFunds;
     uint256 public totalRaisedFunds;
@@ -17,15 +17,15 @@ contract ManageProject is  ERC20,Ownable {
     event Withdrawal(address receiver, uint256 amount);
     event ProjectStopped();
 
-    constructor(uint256 _fundsToRaiste, string memory _name, string memory _symbol, address _stablecoin) ERC20(_name, _symbol) Ownable(msg.sender){
+    constructor(uint256 _fundsToRaiste, string memory _name, string memory _symbol, address _stablecoin, address _owner) ERC20(_name, _symbol) Ownable(_owner){
         fundsToRaise = _fundsToRaiste;
         stableCoin = _stablecoin;
         lastUpdatedTimeStamp = block.timestamp;
     }
 
     function invest(uint256 amount) external {
-        require(active, "Project not active");
-        require(raisedFunds + amount <= fundsToRaise, "Already raised the funds");
+        require(active, "Sale not active");
+        require(raisedFunds + amount <= fundsToRaise, "Amount greater than remaining amount");
         totalRaisedFunds += amount;
         raisedFunds += amount;
         bool success = ERC20(stableCoin).transferFrom(msg.sender, address(this), amount);
@@ -48,7 +48,7 @@ contract ManageProject is  ERC20,Ownable {
 
     function withdraw() external onlyOwner {
         uint256 amount = ERC20(stableCoin).balanceOf(address(this));
-        bool success = ERC20(stableCoin).transferFrom(address(this), msg.sender, amount);
+        bool success = ERC20(stableCoin).transfer(msg.sender, amount);
         require(success, "Transfer failed");
         emit Withdrawal(msg.sender, amount);
     }

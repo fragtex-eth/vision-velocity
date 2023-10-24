@@ -9,6 +9,7 @@ contract FactoryTest is Test {
 
     function setUp() public {
         factory = new VVFactory();
+
     }
 
     function test_createProject(uint256 fundsToRaise, string memory name, string memory symbol, address stablecoin) public{
