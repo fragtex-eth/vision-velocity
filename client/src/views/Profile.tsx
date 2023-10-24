@@ -49,7 +49,7 @@ export default function Profile() {
     return (
         <div className="relative">
             <img src={user?.image || DefaultUser} className="absolute left-0 right-0 w-64 h-64 rounded-full border border-black border-1 m-auto -top-32 overflow-hidden"></img>
-            <div className="flex flex-col gap-7 justify-between py-7 px-24 mt-[160px]  surveys flex flex-wrap  bg-red-50 border border-solid mt-11 border-white max-w-[1270px] rounded-[45px] ml-auto mr-auto">
+            <div className="flex flex-col gap-7 justify-between py-7 px-24 mt-[160px]  surveys flex flex-wrap bg-slate-100 border border-solid mt-11 border-white max-w-[1270px] rounded-[45px] ml-auto mr-auto">
                 <h2 className="ml-auto mr-auto mt-28">{user?.name}</h2>
                 {isLoggedIn.id == user.id && <span className="ml-auto mr-auto text-sm m-0 -mt-8" onClick={()=> openModal('editProfile')}>Edit Profile</span>}
                 <div className="links flex justify-between w-40 text-2xl ml-auto mr-auto">

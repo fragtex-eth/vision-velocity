@@ -56,7 +56,7 @@ export default function DiscoverView() {
                         <Link to={`/project/${project.id}`} key={project.userId}>
                         <div className="elemShadow card w-96 bg-white min-h-full rounded-[35px] overflow-hidden " key={project.userId}>
                             <div className="top relative">
-                                <img src={project.image} alt={project.name} className="w-full h-[200px] object-cover"/>
+                                <img src={project.image} alt={project.name} className="w-full h-[140px] object-cover"/>
                                 <div className="flex px-3 -mt-[70px] items-end justify-between">
                                     <button className=" px-8 h-12 bg-white rounded-3xl shadow border border-black justify-center">Invest</button>
                                     
@@ -73,7 +73,9 @@ export default function DiscoverView() {
                                     <div className="loadingbarIS h-1 bg-black rounded-full -mt-[1px] absolute" style={{width: `${fundingPercentage}%`}}></div>
                                 </div>
                                 <p className="text-base text-justify leading-5">
-                                    {project.description}
+                                {project?.description.length > 100 
+                                ? project?.description.substring(0, 100) + '...' 
+                                : project?.description}
                                 </p>
                             </div>
                         </div>

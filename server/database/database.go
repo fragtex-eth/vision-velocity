@@ -11,7 +11,7 @@ import (
 func Connect() (*mongo.Client, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb+srv://fragtex1:fragtex1@cluster0.i2w3dvj.mongodb.net/?retryWrites=true&w=majority"))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb+srv://lukas123:XtavOYbqe5ey6niD@cluster0.i2w3dvj.mongodb.net/?retryWrites=true&w=majority"))
 	if err != nil {
 		return nil, err
 	}
