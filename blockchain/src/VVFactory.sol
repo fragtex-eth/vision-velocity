@@ -8,12 +8,12 @@ contract VVFactory {
 
     event ProjectCreated(uint indexed id, string name);
 
-    function createProject(uint256 _fundsToRaise, string calldata _name, string calldata _symbol) public returns(address sender){
-        ManageProject project = new ManageProject( _fundsToRaise, _name, _symbol);
+    function createProject(uint256 _fundsToRaise, string calldata _name, string calldata _symbol, address _stableCoin) public returns(ManageProject){
+        ManageProject project = new ManageProject( _fundsToRaise, _name, _symbol, _stableCoin);
         activeProjects.push(project);
         uint256 id = activeProjects.length;
         ownerProject[id] = msg.sender;
         emit ProjectCreated(id, _name);
-        return msg.sender;
+        return project;
     }
 }

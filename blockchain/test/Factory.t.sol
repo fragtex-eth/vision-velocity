@@ -11,8 +11,8 @@ contract FactoryTest is Test {
         factory = new VVFactory();
     }
 
-    function test_createProject(uint256 fundsToRaise, string memory name, string memory symbol) public{
-        factory.createProject(fundsToRaise, name, symbol);
+    function test_createProject(uint256 fundsToRaise, string memory name, string memory symbol, address stablecoin) public{
+        factory.createProject(fundsToRaise, name, symbol, stablecoin);
         assertEq(factory.ownerProject(1), address(this));
     }
 }
