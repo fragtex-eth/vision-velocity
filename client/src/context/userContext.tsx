@@ -1,6 +1,6 @@
 // usersContext.tsx
 
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from "react";
 
 type UserType = {
   // Define the structure of your user data here
@@ -34,7 +34,7 @@ export const UsersProvider: React.FC<Props> = ({ children }) => {
 export const useUsers = () => {
   const context = useContext(UsersContext);
   if (context === undefined) {
-    throw new Error('useUsers must be used within a UsersProvider');
+    throw new Error("useUsers must be used within a UsersProvider");
   }
   return context;
 };

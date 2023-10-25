@@ -1,43 +1,45 @@
-
-import Header from './components/Common/Header'
-import DiscoverView from './views/Discover'
-import { Outlet } from 'react-router-dom';
-import Profile from './views/Profile'
-import Project from './views/Project'
+import Header from "./components/Common/Header";
+import DiscoverView from "./views/Discover";
+import { Outlet } from "react-router-dom";
+import Profile from "./views/Profile";
+import Project from "./views/Project";
 import { useLocation } from "react-router-dom";
-import { useEffect } from 'react';
-import CreateProfile from './views/EditProfile';
-import CreateProject from './views/CreateProject';
-import BackgroundLines from "./assets/bgLines.svg"
-import { useModal } from './context/ModalContext';
-import Register from './views/Register';
-import Login from './views/Login';
-import EditProfile from './views/EditProfile';
+import { useEffect } from "react";
+import CreateProfile from "./views/EditProfile";
+import CreateProject from "./views/CreateProject";
+import BackgroundLines from "./assets/bgLines.svg";
+import { useModal } from "./context/ModalContext";
+import Register from "./views/Register";
+import Login from "./views/Login";
+import EditProfile from "./views/EditProfile";
 
 //any
 function App() {
   const location = useLocation();
-  const {modalType} = useModal();
-useEffect(() => {
-  window.scrollTo(0,0);
-}, [location]);
+  const { modalType } = useModal();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
-      <div className="min-h-screen overflow-y-hidden">
-        <img className="absolute -z-10 ml-50 mt-32 w-screen" src={BackgroundLines}></img>
-        <div className="ellipse -z-10"></div>
-        {/* <CreateProfile/> */}
-        {/* <CreateProject/> */}
-        {modalType === 'register' && <Register />}
-        {modalType === 'login' && <Login />}
-        {modalType === 'editProfile' && <EditProfile/>}
-        {modalType === 'createProject' && <CreateProject/>}
-        <Header/>
-        
-        <Outlet/>
-        {/* <Register/> */}
-      </div>
-  )
+    <div className="min-h-screen overflow-y-hidden">
+      <img
+        className="ml-50 absolute -z-10 mt-32 w-screen"
+        src={BackgroundLines}
+      ></img>
+      <div className="ellipse -z-10"></div>
+      {/* <CreateProfile/> */}
+      {/* <CreateProject/> */}
+      {modalType === "register" && <Register />}
+      {modalType === "login" && <Login />}
+      {modalType === "editProfile" && <EditProfile />}
+      {modalType === "createProject" && <CreateProject />}
+      <Header />
+
+      <Outlet />
+      {/* <Register/> */}
+    </div>
+  );
 }
 
-export default App
+export default App;
