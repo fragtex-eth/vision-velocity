@@ -1,4 +1,10 @@
 import { useState } from "react";
+import { useContractWrite } from "wagmi";
+import FactoryABI from "../constants/factorycontractabi.json";
+import { factoryContractAddress } from "../constants/factorycontractaddress";
+import { chainIdC } from "../constants/factorycontractaddress";
+import { stableCoinAddress } from "../constants/factorycontractaddress";
+import { waitForTransaction } from "@wagmi/core";
 
 export default function CreateProject() {
   const [name, setName] = useState("");
@@ -10,13 +16,40 @@ export default function CreateProject() {
   const [xLink, setXLink] = useState("");
   const [linkedinLink, setLinkedinLink] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
-  const [requiredFunds, setRequiredFunds] = useState("");
+  const [requiredFunds, setRequiredFunds] = useState();
   const [sellPercentage, setSellPercentage] = useState("");
   const [error, setError] = useState("");
 
+  const { data, isLoading, isSuccess, write } = useContractWrite({
+    address: factoryContractAddress,
+    abi: FactoryABI,
+    functionName: "createProject",
+    chainId: chainIdC,
+    args: [requiredFunds, name, name.slice(0, 3), stableCoinAddress], //fundsToRaise(uint), _name(string), symbol(string, _stablecoin Address)
+    onError(error) {
+      console.log("Error", error);
+    },
+    onSuccess(data) {
+      console.log("Success", data);
+    },
+  });
+
   const handleSubmit = async () => {
+    let contract = write();
+    console.log(data);
+    const data2 = await waitForTransaction({
+      //@ts-ignore
+      hash: data.hash,
+    });
+
+    console.log(contract.hash);
+    console.log(data2);
+    if (!isSuccess) {
+      throw "Failed";
+    }
     const body = {
       name,
+      contract,
       description,
       image,
       preview: [{ img: preview1 }, { img: preview2 }],
@@ -124,7 +157,7 @@ export default function CreateProject() {
           </span>
           <input
             value={requiredFunds}
-            onChange={(e) => setRequiredFunds(e.target.value)}
+            onChange={(e) => setRequiredFunds(parseInt(e.target.value))}
             className="mb-4 h-12 rounded-3xl bg-neutral-100 p-4 text-base font-normal text-zinc-500"
             placeholder="Enter required funds..."
             type="number"
@@ -146,7 +179,7 @@ export default function CreateProject() {
             onClick={handleSubmit}
             className="flex h-12 items-center justify-center rounded-3xl bg-black p-4"
           >
-            Create Project
+            {isLoading ? "IsLoading" : "Create Project"}
           </button>
         </div>
       </div>

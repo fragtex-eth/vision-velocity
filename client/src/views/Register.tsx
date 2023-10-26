@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useModal } from "../context/ModalContext";
-import { registerEC } from "../api/auth/Register";
+import { useModal } from "../context/modalContext";
+import { registerEC } from "../services/auth/Register";
 
 export default function Register() {
   const { closeModal } = useModal();

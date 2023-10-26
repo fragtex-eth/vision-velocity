@@ -9,19 +9,16 @@ import DiscoverView from "./views/Discover";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi";
 import { mainnet, polygon } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ProjectsProvider } from "./context/projectsContext.tsx";
 import { UsersProvider } from "./context/userContext.tsx";
-import { LoginProvider } from "./context/login.tsx";
-import { ModalProvider } from "./context/ModalContext.tsx";
+import { LoginProvider } from "./context/loginContext.tsx";
+import { ModalProvider } from "./context/modalContext.tsx";
 
-const { chains, publicClient } = configureChains(
-  [mainnet, polygon],
-  [publicProvider()],
-);
+const { chains, publicClient } = configureChains([sepolia], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "My RainbowKit App",

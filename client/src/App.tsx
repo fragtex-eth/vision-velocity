@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import CreateProfile from "./views/EditProfile";
 import CreateProject from "./views/CreateProject";
 import BackgroundLines from "./assets/bgLines.svg";
-import { useModal } from "./context/ModalContext";
+import { useModal } from "./context/modalContext";
 import Register from "./views/Register";
 import Login from "./views/Login";
 import EditProfile from "./views/EditProfile";

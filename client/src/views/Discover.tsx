@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import projects from "./../utils/mockData/projects";
 
 import { Link } from "react-router-dom";
-import { fetchProjects } from "../api/project/FetchProjects";
+import { fetchProjects } from "../services/project/FetchProjects";
 import DefaultUserImg from "../assets/defaultUserImg.webp";
 import { useProjects } from "../context/projectsContext";
 import { useUsers } from "../context/userContext";
-import { useModal } from "../context/ModalContext";
+import { useModal } from "../context/modalContext";
 type Project = {
   id: string;
   userId: string;

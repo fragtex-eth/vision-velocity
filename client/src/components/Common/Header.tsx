@@ -4,13 +4,13 @@ import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useProjects } from "../../context/projectsContext";
-import { fetchProjects } from "../../api/project/FetchProjects";
+import { fetchProjects } from "../../services/project/FetchProjects";
 import { useUsers } from "../../context/userContext";
-import { fetchUserData } from "../../api/user/FetchUsers";
-import { useLogin } from "../../context/login";
-import { fetchUserDetails } from "../../api/user/FetchIUser";
-import { useModal } from "../../context/ModalContext";
-import { logoutEC } from "../../api/auth/Logout";
+import { fetchUserData } from "../../services/user/FetchUsers";
+import { useLogin } from "../../context/loginContext";
+import { fetchUserDetails } from "../../services/user/FetchIUser";
+import { useModal } from "../../context/modalContext";
+import { logoutEC } from "../../services/auth/Logout";
 
 export default function Header() {
   const { setProjects } = useProjects();
@@ -69,7 +69,7 @@ export default function Header() {
       </Link>
       <div className="h-[45px] w-[320px]">
         <input
-          className="absolute h-[45px] w-[320px] rounded-[40px] bg-neutral-100 pl-12 pr-8"
+          className="absolute flex h-[45px] w-[320px] rounded-[40px] bg-neutral-100 pl-12 pr-8"
           placeholder="Search..."
         ></input>
         <div className="z-2 absolute ml-5 mt-3.5 text-lg">

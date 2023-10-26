@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 import { useUsers } from "../context/userContext";
 import { useProjects } from "../context/projectsContext";
 import { useState, useEffect } from "react";
-import { useLogin } from "../context/login";
-import { useModal } from "../context/ModalContext";
+import { useLogin } from "../context/loginContext";
+import { useModal } from "../context/modalContext";
 export default function Profile() {
   const { openModal } = useModal();
   const { id } = useParams();

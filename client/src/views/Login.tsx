@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useModal } from "../context/ModalContext";
-import { loginEC } from "../api/auth/Login"; // Assume you have a login API
-import { useLogin } from "../context/login";
+import { useModal } from "../context/modalContext";
+import { loginEC } from "../services/auth/Login"; // Assume you have a login API
+import { useLogin } from "../context/loginContext";
 export default function Login() {
   const { setIsLoggedIn } = useLogin();
   const { closeModal } = useModal();
