@@ -5,7 +5,9 @@ import { factoryContractAddress } from "../constants/factorycontractaddress";
 import { chainIdC } from "../constants/factorycontractaddress";
 import { stableCoinAddress } from "../constants/factorycontractaddress";
 import { waitForTransaction } from "@wagmi/core";
-
+import { readContract } from "@wagmi/core";
+import { useAccount } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 export default function CreateProject() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -30,26 +32,29 @@ export default function CreateProject() {
       console.log("Error", error);
     },
     onSuccess(data) {
-      console.log("Success", data);
+      handleSubmitP2(data);
     },
   });
+  const { address, isConnecting, isDisconnected } = useAccount();
 
-  const handleSubmit = async () => {
-    let contract = write();
-    console.log(data);
-    const data2 = await waitForTransaction({
-      //@ts-ignore
+  const handleSumbitP1 = async () => {
+    write();
+  };
+  const handleSubmitP2 = async (data) => {
+    await waitForTransaction({
       hash: data.hash,
     });
 
-    console.log(contract.hash);
-    console.log(data2);
-    if (!isSuccess) {
-      throw "Failed";
-    }
+    const projectAddress = await readContract({
+      address: factoryContractAddress,
+      abi: FactoryABI,
+      functionName: "getProjectAddress",
+      args: [address],
+    });
+
     const body = {
       name,
-      contract,
+      projectAddress,
       description,
       image,
       preview: [{ img: preview1 }, { img: preview2 }],
@@ -175,12 +180,16 @@ export default function CreateProject() {
             type="number"
           />
 
-          <button
-            onClick={handleSubmit}
-            className="flex h-12 items-center justify-center rounded-3xl bg-black p-4"
-          >
-            {isLoading ? "IsLoading" : "Create Project"}
-          </button>
+          {isDisconnected ? (
+            <ConnectButton />
+          ) : (
+            <button
+              onClick={handleSumbitP1}
+              className="flex h-12 items-center justify-center rounded-3xl bg-black p-4"
+            >
+              {isLoading ? "IsLoading" : "Create Project"}
+            </button>
+          )}
         </div>
       </div>
     </div>
