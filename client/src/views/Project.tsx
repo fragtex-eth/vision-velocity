@@ -12,17 +12,65 @@ import { Link, useParams } from "react-router-dom";
 import { useUsers } from "../context/userContext";
 import { useProjects } from "../context/projectsContext";
 import { useState, useEffect } from "react";
+import { useContractWrite } from "wagmi";
+import ManageProjectAbi from "../constants/manageprojectabi.json";
+import { readContract } from "@wagmi/core";
+import { stableCoinAddress } from "../constants/factorycontractaddress";
+import ERC20ABI from "../constants/erc20contractabi.json";
+import { useAccount } from "wagmi";
+import { writeContract, waitForTransaction } from "@wagmi/core";
 
 export default function Project() {
   const [project, setProject] = useState(null);
+  const [amount, setAmount] = useState();
   const [user, setUser] = useState(null);
   const { id } = useParams();
   const { users } = useUsers();
   const { projects } = useProjects();
 
+  const { address } = useAccount();
+
+  const { data, isLoading, isSuccess, write } = useContractWrite({
+    address: project?.projectAddress,
+    abi: ManageProjectAbi,
+    functionName: "invest",
+    onError(error) {
+      console.log("Error", error);
+    },
+    onSuccess(data) {
+      console.log("Success", data);
+    },
+  });
+
+  const callInvest = async () => {
+    //check if allowance is high enougth
+    const allowedAmount = await readContract({
+      address: stableCoinAddress,
+      abi: ERC20ABI,
+      functionName: "allowance",
+      args: [address, project?.projectAddress],
+    });
+    if (allowedAmount < amount) {
+    }
+    //if not ask for allowence
+    const { hash } = await writeContract({
+      address: stableCoinAddress,
+      abi: ERC20ABI,
+      functionName: "approve",
+      args: [project?.projectAddress, amount],
+    });
+    const data = await waitForTransaction({
+      hash: hash,
+    });
+
+    //write
+    write({ args: [amount] });
+  };
+
   useEffect(() => {
     try {
       const foundProject = projects.find((p) => p.id === id);
+      console.log(foundProject);
       setProject(foundProject || {}); // Fallback to an empty object
       if (foundProject) {
         const foundUser = users[foundProject.userId];
@@ -104,12 +152,17 @@ export default function Project() {
             <input
               className="h-full w-full rounded-s-3xl  bg-white  px-8"
               placeholder="10"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
             ></input>
             <div className="   flex h-full w-[75px] items-center rounded-e-3xl bg-gray-50 px-4">
               BUSD
             </div>
           </div>
-          <button className="h-12 justify-center rounded-3xl border border-black bg-white px-8 shadow">
+          <button
+            onClick={callInvest}
+            className="h-12 justify-center rounded-3xl border border-black bg-white px-8 shadow"
+          >
             Invest
           </button>
         </div>
