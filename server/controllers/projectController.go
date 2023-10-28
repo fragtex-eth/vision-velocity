@@ -20,7 +20,7 @@ type Project struct {
 	ID             primitive.ObjectID `json:"id" bson:"_id"`
 	UserID         string             `json:"userId"`
 	Name           string             `json:"name"`
-	projectAddress string             `json:"projectAddress"`
+	ProjectAddress string             `json:"projectAddress"`
 	Description    string             `json:"description"`
 	CreationDate   time.Time          `json:"creationDate"`
 	Image          string             `json:"image"`
