@@ -27,19 +27,9 @@ type User = {
 type ProjectsResponse = Project[];
 
 export default function DiscoverView() {
-  //const [loading, setLoading] = useState<boolean>(true);
-  //const [error, setError] = useState<Error | null>(null);
-
   const { projects } = useProjects();
   const { users } = useUsers();
   const { openModal } = useModal();
-  // if (loading) {
-  //     return <div>Loading...</div>;
-  // }
-
-  // if (error) {
-  //     return <div>Error fetching projects. Please try again later.</div>;
-  // }
 
   return (
     <div className="text-center ">
