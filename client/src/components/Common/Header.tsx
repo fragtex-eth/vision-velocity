@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../assets/logo.svg";
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -12,8 +12,12 @@ import { fetchUserDetails } from "../../services/user/FetchIUser";
 import { useModal } from "../../context/modalContext";
 import { logoutEC } from "../../services/auth/Logout";
 import profilePic from "../../assets/profilPic.png";
+import DefaultUser from "../../assets/defaultUserImg.webp";
+
+import { FiLogOut, FiTool, FiUser, FiSettings } from "react-icons/fi";
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const { setProjects } = useProjects();
   const { setUsers, users } = useUsers();
   const { setIsLoggedIn, isLoggedIn } = useLogin();
@@ -85,29 +89,66 @@ export default function Header() {
             <button onClick={() => openModal("login")}>Login</button>
           </>
         ) : (
-          <div className="flex flex-col">
-            <div className="flex items-center justify-center gap-1">
-              <div className="relative">
+          <div
+            className="flex cursor-pointer flex-col"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <div className="flex items-center justify-center gap-2">
+              <div className="hd relative">
                 <img
-                  src={profilePic}
-                  className="h-13 w-13 rounded-full border border-black"
+                  src={users[isLoggedIn?.id]?.image || DefaultUser}
+                  className="max-w-12 h-full max-h-12 w-full rounded-full border border-black"
                 />
-                <div className="text-md shadowClass absolute -ml-2 -mt-6 flex h-7 w-7 items-center justify-center rounded-full bg-black font-semibold text-white shadow">
+                <div className="text-md shadowClass absolute -ml-2 -mt-6 flex hidden h-7 w-7 items-center justify-center rounded-full bg-black font-semibold text-white shadow">
                   5
                 </div>
               </div>
-              <div className="relative leading-5">
+              <div className="relative cursor-pointer leading-5">
                 <span>
                   Hello,
                   <br />
-                  <Link to={`/profile/${isLoggedIn?.id}`}>
-                    {isLoggedIn?.name.split(" ")[0]}
-                  </Link>
+                  {isLoggedIn?.name.split(" ")[0]}
                 </span>
-                <div className="dropdown--extended">
-                  <div className="arrow-up absolute z-10 -ml-[42px] mt-3.5 "></div>
-                  <div className="z-1 absolute -ml-[75px] mt-5 h-[150px] w-[150px] rounded-xl bg-[#ffffff]"></div>
-                </div>
+                {menuOpen && (
+                  <div className="dropdown--extended">
+                    <div className="arrow-up absolute z-10 -ml-[37px] mt-2.5 "></div>
+                    <div className="z-1 absolute -ml-[90px] mt-4 h-[152px] w-[160px] gap-2 rounded-xl bg-[#ffffff] p-4 pt-3">
+                      <Link to={`/profile/${isLoggedIn?.id}`}>
+                        <div className="flex items-center gap-2 py-1 text-base text-black hover:text-green-800">
+                          <FiUser />
+                          Profile
+                        </div>
+                      </Link>
+                      <hr />
+                      <div
+                        className="flex cursor-pointer items-center gap-2 py-1 text-base text-black hover:text-green-800"
+                        onClick={() => openModal("createProject")}
+                      >
+                        <FiTool />
+                        Create Project
+                      </div>
+                      <hr />
+                      <div
+                        className="flex cursor-pointer items-center gap-2 py-1 text-base text-black hover:text-green-800"
+                        onClick={() => openModal("editProfile")}
+                      >
+                        <FiSettings />
+                        Edit Profile
+                      </div>
+                      <hr />
+                      <div
+                        className="flex cursor-pointer items-center gap-2 py-1 text-base text-black hover:text-green-800"
+                        onClick={async () => {
+                          await logoutEC(setIsLoggedIn);
+                          console.log("now");
+                        }}
+                      >
+                        <FiLogOut />
+                        Logout
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             {/* <button

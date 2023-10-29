@@ -34,7 +34,6 @@ export default function DiscoverView() {
   return (
     <div className="text-center ">
       <h1>Discover</h1>
-      <button onClick={() => openModal("createProject")}>Create Project</button>
       <div className="surveys ml-auto mr-auto mt-11 flex max-w-[1270px] flex-wrap content-start justify-between gap-7 rounded-[45px] border border-solid border-[#50695319] border-white bg-white p-7">
         {projects &&
           projects.map((project) => {
