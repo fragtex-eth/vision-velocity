@@ -7,16 +7,11 @@ import { stableCoinAddress } from "../constants/factorycontractaddress";
 import { waitForTransaction } from "@wagmi/core";
 import { readContract } from "@wagmi/core";
 import { useAccount } from "wagmi";
+import exampleImg from "../assets/profilPic.png";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useModal } from "../context/modalContext";
-import {
-  FaSquareXTwitter,
-  FaGithub,
-  FaTelegram,
-  FaDiscord,
-} from "react-icons/fa6";
 
-export default function CreateProject() {
+export default function CreateProject2() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -114,77 +109,17 @@ export default function CreateProject() {
         </h2>
         <div className="grid h-full max-w-[900px] grid-cols-2 gap-10 text-lg font-semibold">
           <div className="flex w-full flex-shrink-0 flex-col gap-3 text-green-950">
-            <div className="flex flex-col gap-1">
-              <label className="pl-5">Enter a name</label>
-              <input
-                className="rounded-3xl bg-neutral-100 px-5 py-3 text-base"
-                placeholder="Type her.."
-              ></input>
-            </div>
-            <label className="pl-5">Socials</label>
-            <div className="grid h-full grid-cols-2 flex-wrap justify-between gap-3">
-              <div className="m-auto flex h-11 w-full items-center rounded-3xl bg-neutral-100 px-4">
-                <div className="mr-3 text-2xl">
-                  <FaSquareXTwitter />
-                </div>
-                <input
-                  className="w-full bg-transparent"
-                  placeholder="Type her.."
-                />
-              </div>
-              <div className="m-auto  box-border flex h-11 w-full items-center rounded-3xl bg-neutral-100 px-4">
-                <div className="mr-3 text-2xl">
-                  <FaTelegram />
-                </div>
-                <input
-                  className="w-full bg-transparent"
-                  placeholder="Type her.."
-                />
-              </div>
-              <div className="m-auto flex h-11 w-full items-center rounded-3xl bg-neutral-100 px-4">
-                <div className="mr-3 text-2xl">
-                  <FaDiscord />
-                </div>
-                <input
-                  className="w-full bg-transparent"
-                  placeholder="Type her.."
-                />
-              </div>
-              <div className="m-auto box-border flex h-11 w-full items-center rounded-3xl bg-neutral-100 px-4">
-                <div className="mr-3 text-2xl">
-                  <FaGithub />
-                </div>
-                <input
-                  className="w-full bg-transparent"
-                  placeholder="Type her.."
-                />
-              </div>
-            </div>
-            <div className="grid w-full grid-cols-2 items-end gap-2">
-              <div className="flex w-full flex-col gap-1">
-                <label className="pl-5">Equity</label>
-                <input
-                  className="w-full rounded-3xl bg-neutral-100 px-3 py-3 text-base"
-                  placeholder="Type her.."
-                ></input>
-              </div>
-              <div className="flex w-full flex-col gap-1">
-                <label>Amount p/M</label>
-                <input
-                  className="w-full rounded-3xl bg-neutral-100 px-3 py-3 text-base"
-                  placeholder="Type her.."
-                ></input>
-              </div>
-              <div className="align-end flex w-full flex-col gap-1"></div>
-            </div>
+            <img src={exampleImg} />
           </div>
           <div className="text-normal flex h-full w-full flex-shrink-0 flex-col gap-1 gap-4">
             <div className="flex h-full flex-col gap-1">
-              <label className="pl-5">Enter a description</label>
-              <textarea
+              <label className="pl-5">Select Header</label>
+              <input
                 className="h-full flex-1 rounded-3xl bg-neutral-100 px-5 py-3 text-base"
                 placeholder="Type here"
-              ></textarea>
+              />
+              <label className="pl-5">Select Header (square)</label>
+              <label className="pl-5">Select screenshots</label>
             </div>
             <button className="rounded-3xl bg-black px-10 py-3 text-base font-semibold text-white">
               Next
