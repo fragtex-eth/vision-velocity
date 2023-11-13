@@ -13,6 +13,7 @@ import Register from "./views/Register";
 import Login from "./views/Login";
 import EditProfile from "./views/EditProfile";
 import CreateProject2 from "./views/CreateProject2";
+import CreateProject3 from "./views/CreateProject3";
 //any
 function App() {
   const location = useLocation();
@@ -33,7 +34,7 @@ function App() {
       {modalType === "register" && <Register />}
       {modalType === "login" && <Login />}
       {modalType === "editProfile" && <EditProfile />}
-      {modalType === "createProject" && <CreateProject2 />}
+      {modalType === "createProject" && <CreateProject3 />}
       <Header />
 
       <Outlet />
