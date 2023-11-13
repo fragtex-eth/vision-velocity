@@ -102,7 +102,7 @@ export default function CreateProject() {
 
   return (
     <div className="fixed z-10 flex h-full w-full items-center justify-center bg-black bg-opacity-60 text-white">
-      <div className="relative overflow-hidden rounded-3xl bg-white p-14 text-black">
+      <div className="relative  max-h-[500px] w-full max-w-[1000px] overflow-hidden rounded-3xl bg-white p-14 text-black">
         <button
           className="absolute right-0 top-0 mr-5 mt-5 h-12 w-12 rounded-full bg-black text-white"
           onClick={closeModal}

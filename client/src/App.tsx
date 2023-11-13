@@ -12,7 +12,7 @@ import { useModal } from "./context/modalContext";
 import Register from "./views/Register";
 import Login from "./views/Login";
 import EditProfile from "./views/EditProfile";
-
+import CreateProject2 from "./views/CreateProject2";
 //any
 function App() {
   const location = useLocation();
@@ -33,7 +33,7 @@ function App() {
       {modalType === "register" && <Register />}
       {modalType === "login" && <Login />}
       {modalType === "editProfile" && <EditProfile />}
-      {modalType === "createProject" && <CreateProject />}
+      {modalType === "createProject" && <CreateProject2 />}
       <Header />
 
       <Outlet />
